@@ -6,7 +6,7 @@
 
 #include "parser.h"
 
-#define DEBUG
+//#define DEBUG
 
 namespace {
 
@@ -124,8 +124,7 @@ Parser::parse(std::string file_name)
       if (c=='}') {
         state = PARSING_OBJ_LEVEL;
         // consume ',' right after "args": {...}
-        bool res = is.get(c);
-        assert(res);
+        is.get(c);
         assert(c==',');
       }
       assert(c!='{');

@@ -1,7 +1,9 @@
-#include <parser.h>
 #include <iostream>
+#include <parser.h>
+#include <analyzer.h>
 
 using TFTraceProfiler::Parser;
+using TFTraceProfiler::Analyzer;
 
 int main()
 {
@@ -9,6 +11,9 @@ int main()
 
   Parser parser;
   parser.parse("./timeline.json");
+
+  Analyzer analyzer(*parser.getObjs());
+  analyzer.analyze();
 
   return 0;
 }
