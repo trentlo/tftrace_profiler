@@ -5,12 +5,22 @@
 using TFTraceProfiler::Parser;
 using TFTraceProfiler::Analyzer;
 
-int main()
+int main(int argc, char *argv[])
 {
-  std::cout << "Parsing ./timeline.json" << std::endl;
+  if (argc!=2) {
+    std::string command(argv[0]);
+    std::cout << "Expected command usage: "
+              << command << " ${JSON_FILE}"
+              << std::endl;
+    return -1;
+  }
+
+  std::string json_file(argv[1]);
+
+  std::cout << "Parsing " << json_file << std::endl;
 
   Parser parser;
-  parser.parse("./timeline.json");
+  parser.parse(json_file);
 
   Analyzer analyzer(*parser.getObjs());
   analyzer.analyze();
